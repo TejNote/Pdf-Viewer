@@ -104,7 +104,7 @@ class PdfDownloader(
                             outputStream.flush() // Ensure all data is written to the file
                         }
                     }
-                    if (tempFile.length() == totalLength) {
+                    if (tempFile.length() > 0 || tempFile.length() == totalLength) {
                         val outputFile = File(cacheDir, cachedFileName)
                         tempFile.renameTo(outputFile)
                         withContext(Dispatchers.Main) { listener.onDownloadSuccess(outputFile.absolutePath) }
